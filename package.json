@@ -1,0 +1,29 @@
+{
+  "name": "podcast-app",
+  "version": "1.0.0",
+  "description": "Znogoud Podcast App",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZnoGouDj/nativeJS-app.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Znogoud <znogoud3@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZnoGouDj/nativeJS-app/issues"
+  },
+  "homepage": "https://github.com/ZnoGouDj/nativeJS-app#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
