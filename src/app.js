@@ -1,13 +1,15 @@
 import './styles.css';
-import { isValid } from './utils';
+import { createModal, isValid } from './utils';
 import { Question } from './question';
 
 const form = document.getElementById('form');
+const modalBtn = document.getElementById('modal-btn');
 const input = form.querySelector('#question-input');
 const submitBtn = form.querySelector('#submit');
 
 window.addEventListener('load', Question.renderList);
 form.addEventListener('submit', submitFormHandler);
+modalBtn.addEventListener('click', openModal);
 input.addEventListener('input', () => {
   submitBtn.disabled = !isValid(input.value);
 });
@@ -22,11 +24,15 @@ function submitFormHandler(event) {
     };
 
     submitBtn.disabled = true;
-
+    // Async request to server to save question
     Question.create(question).then(() => {
       input.value = '';
       input.className = '';
       submitBtn.disabled = false;
     });
   }
+}
+
+function openModal() {
+  createModal('Authentication', '<h1>text</h1>');
 }
