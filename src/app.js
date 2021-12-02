@@ -1,6 +1,7 @@
 import './styles.css';
 import { createModal, isValid } from './utils';
 import { Question } from './question';
+import { getAuthForm } from './auth';
 
 const form = document.getElementById('form');
 const modalBtn = document.getElementById('modal-btn');
@@ -34,5 +35,15 @@ function submitFormHandler(event) {
 }
 
 function openModal() {
-  createModal('Authentication', '<h1>text</h1>');
+  createModal('Authentication', getAuthForm());
+  document.getElementById('auth-form').addEventListener('submit', authFormHandler, { once: true });
+}
+
+function authFormHandler(event) {
+  event.preventDefault();
+
+  const email = event.target.querySelector('#email').value;
+  const password = event.target.querySelector('#password').value;
+
+  console.log(email, password);
 }
