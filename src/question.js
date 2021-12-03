@@ -24,8 +24,8 @@ export class Question {
       `https://podcast-project-25f01-default-rtdb.europe-west1.firebasedatabase.app/questions.json?auth=${token}`
     )
       .then(response => response.json())
-      .then(questions => {
-        if (questions.error) {
+      .then(response => {
+        if (respose && response.error) {
           return `<p class="error">${response.error}</p>`;
         }
         return response
