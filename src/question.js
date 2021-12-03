@@ -17,10 +17,23 @@ export class Question {
   }
 
   static fetch(token) {
-    return fetch('https://podcast-project-25f01-default-rtdb.europe-west1.firebasedatabase.app/questions.json')
+    if (!token) {
+      return Promise.resolve('<p class="error">No token</p>');
+    }
+    return fetch(
+      `https://podcast-project-25f01-default-rtdb.europe-west1.firebasedatabase.app/questions.json?auth=${token}`
+    )
       .then(response => response.json())
       .then(questions => {
-        console.log('Questions', questions);
+        if (questions.error) {
+          return `<p class="error">${response.error}</p>`;
+        }
+        return response
+          ? Object.keys(response).map(key => ({
+              ...response[key],
+              id: key,
+            }))
+          : [];
       });
   }
 

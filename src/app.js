@@ -45,5 +45,9 @@ function authFormHandler(event) {
   const email = event.target.querySelector('#email').value;
   const password = event.target.querySelector('#password').value;
 
-  authWithEmailAndPassword(email, password).then(Question.fetch);
+  authWithEmailAndPassword(email, password).then(Question.fetch).then(renderModalAfterAuth);
+}
+
+function renderModalAfterAuth(content) {
+  console.log('Content', content);
 }
