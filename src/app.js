@@ -42,12 +42,21 @@ function openModal() {
 function authFormHandler(event) {
   event.preventDefault();
 
+  const btn = event.target.querySelector('button');
   const email = event.target.querySelector('#email').value;
   const password = event.target.querySelector('#password').value;
 
-  authWithEmailAndPassword(email, password).then(Question.fetch).then(renderModalAfterAuth);
+  btn.disabled = true;
+  authWithEmailAndPassword(email, password)
+    .then(Question.fetch)
+    .then(renderModalAfterAuth)
+    .then(() => (btn.disabled = false));
 }
 
 function renderModalAfterAuth(content) {
-  console.log('Content', content);
+  if (typeof content === 'string') {
+    createModal('Error!', content);
+  } else {
+    createModal('Question list', Question.listToHTML(content));
+  }
 }

@@ -48,6 +48,12 @@ export class Question {
 
     list.innerHTML = html;
   }
+
+  static listToHTML(questions) {
+    return questions.length
+      ? `<ol>${questions.map(q => `<li>${q.text}</li>`).join('')}</ol>`
+      : '<p>No questions yet</p>';
+  }
 }
 
 function addToLocalStorage(question) {
